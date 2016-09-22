@@ -1,0 +1,80 @@
+<html>
+<head>
+    <title></title>
+    <style>
+        body
+        {
+            font-size: .85em;
+            font-family: "Trebuchet MS",Verdana,Harrington,SansSerif;
+            color: #232323;
+            background-color: #fff;
+        }
+        #Pageing A{
+            background-color: #008844;
+            border: 1px solid white;
+            text-decoration: none;
+            color: white;
+            padding: .1em .6em .2em .6em;
+        }
+        #Pageing A.selected{
+            background-color: #aa7700;
+        }
+
+    </style>
+
+
+</head>
+<body>
+<h1>主机信息</h1>
+<div>总条数：{{count}}</div>
+<table border="2px">
+    {% for item in data %}
+    <tr>
+
+        <td>{{item.id}}</td>
+        <td>{{item.HostName}}</td>
+        <td>{{item.IP}}</td>
+
+    </tr>
+ {% endfor %}
+</table>
+<br/>
+<br/>
+    <div id="Pageing">
+        {{page}}
+    </div>
+<div>
+    <select onchange="ChangePageItem(this);" id="s1">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+
+    </select>
+</div>
+
+</body>
+<script src="/static/js/jquery-1.8.3.js"></script>
+<script src="/static/js/jquery.cookie.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var per_item = $.cookie("pager_num");
+        if (per_item)
+        {
+            $('#s1').val(per_item);
+        }
+
+    })
+
+    function ChangePageItem(arg){
+        //创建或修改cookies的值
+        var value = $(arg).val();  //arg是this
+        $.cookie("pager_num",value,{ path: '/'}) //通过路径，设置url可以使用的cookie
+
+    }
+
+
+</script>
+
+
+</html>

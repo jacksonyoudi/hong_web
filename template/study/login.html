@@ -1,0 +1,14 @@
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<form action="/study/login/" method="post">
+    {% csrf_token %}
+    <p>用户名：<input type="text" name="username" /></p>
+    <p>密码：<input type="text" name="password" /></p>
+    <input type="submit" value="提交" />
+    <label style="color:red;">{{msg}}</label>
+</form>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+<input id="na" type="text"/>
+<input type="button" value="ajax请求" onclick="DoAjax()"/>
+
+<script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function DoAjax() {
+        var temp = $('#na').val();
+        $.ajax({
+            url: '/web/ajax/',  //发送到哪个url
+            type: 'POST',
+            data: {data: temp},  //发送的数据
+            success: function (arg) {   // 定义请求的成功
+                console.log(arg);
+                var obj = jQuery.parseJSON(arg);
+                console.log(obj.status);
+                console.log(obj.msg);
+                console.log(obj.data);
+                console.log('success');
+                $('#na').val(obj.msg);
+            },
+            error: function () {
+                console.log('failed');
+
+            }
+
+        });
+
+    }
+    ;
+
+</script>
+</body>
+</html>
